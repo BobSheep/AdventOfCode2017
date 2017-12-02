@@ -27,7 +27,7 @@
 (defun day2 (file)
   (let* ((bar (read-file file))
 	 (prob1 (reduce #'+ (map 'vector #'maxmindiff bar)))
-	 (prob2 (reduce #'+ (map 'vector #'(lambda (x) (divisible3 (descending x))) bar))))
+	 (prob2 (reduce #'+ (map 'vector #'(lambda (x) (divisible (descending x))) bar))))
     (list prob1 prob2)))
 
 (day2 "day2.in")

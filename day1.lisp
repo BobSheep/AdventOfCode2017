@@ -1,5 +1,5 @@
-(defun read-file (foo)
-  (with-open-file (stream foo)
+(defun read-file (file)
+  (with-open-file (stream file)
     (loop for line = (read-line stream nil)
        while line
        collect (with-input-from-string (in line)
@@ -21,6 +21,9 @@
       (+ (val-if-equal (car sequence) (cadr sequence))
 	 (adjacent-equal-sum first (cdr sequence)))))
 
-(let* ((input (number-to-list (caar (read-file "day1.in")))))
-  (adjacent-equal-sum (first input) input))
+(defun day1 (in-file)
+  (let* ((input (number-to-list (caar (read-file in-file)))))
+    (adjacent-equal-sum (first input) input)))
+
+(day1 "day1.in")
 

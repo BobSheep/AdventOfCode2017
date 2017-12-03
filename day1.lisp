@@ -21,9 +21,15 @@
       (+ (val-if-equal (car sequence) (cadr sequence))
 	 (adjacent-equal-sum first (cdr sequence)))))
 
+(defun opposite-equal-sum (sequence)
+  (let* ((offseq (nthcdr (/ (length sequence) 2) sequence)))
+    (* 2 (reduce #'+ (map 'vector #'val-if-equal sequence offseq)))))
+
+
 (defun day1 (in-file)
-  (let* ((input (number-to-list (caar (read-file in-file)))))
-    (adjacent-equal-sum (first input) input)))
+  (let* ((input (number-to-list (caar (read-file in-file))))
+	 (part1 (adjacent-equal-sum (first input) input))
+	 (part2 (opposite-equal-sum input)))
+    (list part1 part2)))
 
 (day1 "day1.in")
-
